@@ -1,6 +1,6 @@
 <?php
     include "koneksi.php";
-    if(!isset($_SESSION['user'])){
+    if(!isset($_SESSION['users'])){
         header('location:login.php');
     }
 ?>
@@ -29,17 +29,22 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="?" style="color: black;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa fa-home" aria-hidden="true"></i></div>
                                 Home
                             </a>
-                            <a class="nav-link" href="?page=kategori" style="color: black;">
+                            <div class="sb-sidenav-menu-heading">Navigasi</div>
+                            <a class="nav-link" href="?page=categories" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Kategori
                             </a>
-                            <a class="nav-link" href="?page=buku" style="color: black;">
+                            <a class="nav-link" href="?page=tasks" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Tugas
                             </a>
+                            <a class="nav-link" href="?page=laporan" style="color: black;">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                    Laporan Tugas
+                                </a>
                             <a class="nav-link" href="logout.php" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
                                 Logout
@@ -48,7 +53,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        <?php echo $_SESSION['user']['nama']; ?>
+                        <?php echo $_SESSION['users']['nama']; ?>
                     </div>
                 </nav>
             </div>

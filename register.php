@@ -1,5 +1,9 @@
 <?php
     include "koneksi.php";
+
+    if (!$koneksi) {
+        die("Koneksi gagal: " . mysqli_connect_error());
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,17 +30,23 @@
                                         <?php
                                             if(isset($_POST['register'])) {
                                                 $username = $_POST['username'];
-                                                $password = md5($_POST['password']);
+                                                $password = $_POST['password'];
                                                 $email = $_POST['email'];
                                                 $nama = $_POST['nama'];
 
-                                                $insert = mysqli_query($koneksi, "INSERT INTO user(username,password,email,nama) VALUES('$username','$password','$email','$nama')");
+                                                if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password)) {
+                                                    echo '<script>alert("Password harus minimal 8 karakter, mengandung huruf besar, huruf kecil, angka, dan simbol!"); location.href="register.php";</script>';
+                                                    exit();
+                                                }
+
+                                                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                                                $insert = mysqli_query($koneksi, "INSERT INTO users(username,password,email,nama) VALUES('$username','$password','$email','$nama')");
 
                                                 if($insert){
                                                     echo '<script>alert("Selamat, register berhasil. Silahkan Login"); location.href="login.php"</script>';
                                                  }else{
-
-                                                    echo '<script>alert("Register gagal, silahkan ulangi kembali.");</script>';
+                                                    echo "Error: " . mysqli_error($koneksi);
                                                 }
                                             }
                                         ?>
@@ -65,7 +75,7 @@
                                     </div>
                                     <div class="card-footer text-center">
                                         <div class="small">
-                                            &copy; 2025 My To List.
+                                            &copy; 2025 My To Do List.
                                         </div>
                                     </div>
                                 </div>

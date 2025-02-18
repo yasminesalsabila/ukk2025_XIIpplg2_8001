@@ -26,15 +26,15 @@
                                         <?php
                                             if(isset($_POST['login'])) {
                                                 $username = $_POST['username'];
-                                                $password = md5($_POST['password']);
+                                                $password = $_POST['password'];
 
-                                                $data = mysqli_query($koneksi, "SELECT*FROM user where username='$username' and password='$password'");
+                                                $data = mysqli_query($koneksi, "SELECT*FROM users where username='$username' and password='$password'");
                                                 $cek = mysqli_num_rows($data);
                                                 if($cek > 0 ){
-                                                    $_SESSION['user'] = mysqli_fetch_array($data);
+                                                    $_SESSION['users'] = mysqli_fetch_array($data);
                                                     echo '<script>alert("Selamat Datang, Login Berhasil"); location.href="index.php";</script>';
                                                 }else{
-                                                    echo '<script>alert("Maaf, Username/Password salah")</script>';
+                                                    echo "Error: " . mysqli_error($koneksi);
                                                 }
                                             }
                                         ?>
