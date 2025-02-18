@@ -34,7 +34,7 @@
 
                                                 if($insert){
                                                     echo '<script>alert("Selamat, register berhasil. Silahkan Login"); location.href="login.php"</script>';
-                                                }else{
+                                                 }else{
 
                                                     echo '<script>alert("Register gagal, silahkan ulangi kembali.");</script>';
                                                 }
