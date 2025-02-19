@@ -5,59 +5,61 @@
             <div class="col-md-12">
                 <form method="post">
                     <?php
-                        $id = $_GET['id']; 
-                        if (isset($_POST['submit'])) {
-                            $id_user = $_SESSION['users']['user_id'];
-                            $due_date = $_POST['due_date'];
-                            $status = $_POST['status'];
-                            $query = mysqli_query($koneksi, "UPDATE task set category_id='$category_id', tanggal_peminjaman='$tanggal_peminjaman', tanggal_pengembalian='$tanggal_pengembalian', status_peminjaman='$status_peminjaman' WHERE id_peminjaman=$id");
-                            if ($query) {
-                                echo '<script>alert("Ubah data berhasil.");</script>';
-                                echo '<script>window.location.href = "?page=peminjaman&id_buku=' . $id_buku . '";</script>';
-                            } else {
-                                echo '<script>alert("Ubah data gagal.");</script>';
+                        if(isset($_POST['submit'])) {
+                            $category_id = $_POST['category_id'];
+                            $task = $_POST['task_id'];
+                            $query = mysqli_query($koneksi, "INSERT INTO tasks(category_id, task_id) VALUES ('$category_id', '$task_id')");
+
+                            if($query) {
+                                echo '<script>alert("Tambah data berhasil.");</script>';
+                                echo '<script>window.location.href = "?page=tasks";</script>';
+                            }else{
+                                echo '<script>alert("Tambah data gagal.");</script>';
                             }
                         }
-                        $query = mysqli_query($koneksi, "SELECT*FROM peminjaman where id_peminjaman=$id");
-                        $data = mysqli_fetch_array($query);
                     ?>  
+
                     <div class="row mb-3">
-                        <div class="col-md-2">Buku</div>
+                        <div class="col-md-2">Kategori</div>
                         <div class="col-md-8 mb-3">
-                            <select name="id_buku" class="form-control">
+                            <select name="category_id" class="form-control">
                                 <?php
-                                $buk = mysqli_query($koneksi, "SELECT * FROM buku");
-                                while ($buku = mysqli_fetch_array($buk)) {
+                                $cat = mysqli_query($koneksi, "SELECT * FROM categories");
+                                while ($categories = mysqli_fetch_array($cat)) {
                                     ?>
-                                    <option <?php if($buku['id_buku']== $data['id_buku']) echo 'selected'; ?> value="<?php echo $buku['id_buku']; ?>"><?php echo $buku['judul']; ?></option>
+                                    <option value="<?php echo $categories['category_id']; ?>"><?php echo $categories['categories']; ?></option>
                                     <?php
                                 }
                                 ?>
+                        </select>
+                    </div>
+                </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2">Tugas</div>
+                        <div class="col-md-8"><input type="text" class="form-control" name="task"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2">Prioritas</div>
+                        <div class="col-md-8 mb-3">
+                            <select name="priority" class="form-control">
+                                <option value="tinggi">Tinggi</option>
+                                <option value="sedang">Sedang</option>
+                                <option value="rendah">Rendah</option>
                             </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                        <div class="col-md-2">Tanggal Riwayat</div>
+                        <div class="col-md-8">
+                            <input type="date" class="form-control" name="due_date">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-2">Tanggal Peminjaman</div>
+                        <div class="col-md-2">Status</div>
                         <div class="col-md-8">
-                            <input type="date" class="form-control" value="<?php echo $data['tanggal_peminjaman']; ?>" name="tanggal_peminjaman">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-2">Tanggal Pengembalian</div>
-                        <div class="col-md-8">
-                            <input type="date" class="form-control" value="<?php echo $data['tanggal_pengembalian']; ?>" name="tanggal_pengembalian" >
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-2">Status Peminjaman</div>
-                        <div class="col-md-8">
-                            <select name="status_peminjaman" class="form-control">
-                                <option value="dipinjam" <?php if($data['status_peminjaman'] == 'dipinjam') echo 'selected'; ?>>Dipinjam</option>
-                                <?php if ($_SESSION['user']['level'] == 'admin') { ?>
-                                <option value="dikembalikan" <?php if($data['status_peminjaman'] == 'dikembalikan') echo 'selected'; ?>>Dikembalikan</option>
-                                <?php
-                                }
-                                ?>
+                            <select name="status" class="form-control">
+                                <option value="complete">Complete</option>
+                                <option value="not complete">Not Complete</option>
                             </select>
                         </div>
                     </div>
@@ -66,7 +68,7 @@
                         <div class="col-md-8">
                             <button type="submit" class="btn btn-outline-primary" name="submit" value="submit">Simpan</button>
                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                            <a href="?page=peminjaman" class="btn btn-outline-danger">Kembali</a>
+                            <a href="?page=tasks" class="btn btn-outline-danger">Kembali</a>
                         </div>
                     </div>
                 </form>

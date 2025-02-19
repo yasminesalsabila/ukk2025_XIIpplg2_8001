@@ -8,22 +8,23 @@
                     $id = $_GET['id'];
                         if(isset($_POST['submit'])) {
                             $categories = $_POST['categories'];
-                            $query = mysqli_query($koneksi, "UPDATE categories set categories='$categories WHERE category_id=$id");
+                            $query = mysqli_query($koneksi, "UPDATE categories set categories='$categories WHERE category=$id");
 
                             if($query) {
                                 echo '<script>alert("Ubah data berhasil.");</script>';
-                                echo '<script>window.location.href = "?page=categories&tasks_id=' . $tasks_id . '";</script>';
+                                echo '<script>window.location.href = "?page=categories";</script>';
                             }else{
                                 echo '<script>alert("Ubah data gagal.");</script>';
                             }
                         }
-                        $query = mysqli_query($koneksi, "SELECT*FROM categories WHERE category_id=$id");
+                        $query = mysqli_query($koneksi, "SELECT*FROM categories WHERE category=$id");
                         $data = mysqli_fetch_array($query);
                     ?>  
                     <div class="row mb-3">
                         <div class="col-md-2">Nama Kategori</div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" value="<?php echo $data['categories']; ?>" name="categories"></div>
+                            <input type="text" class="form-control" value="<?php echo $data['categories']; ?>" name="categories">
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-2"></div>

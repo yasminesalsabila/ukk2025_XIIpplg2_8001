@@ -12,15 +12,18 @@
                     </tr>
                     <?php
                     $i = 1;
-                        $query = mysqli_query($koneksi, "SELECT*FROM categories");
+                        $query = mysqli_query($koneksi, "SELECT * FROM categories");
+                        if (!$query) {
+                            die("Query gagal: " . mysqli_error($koneksi));
+                        }
                         while($data = mysqli_fetch_array($query)){
                             ?>
                             <tr>
                                 <td><?php echo $i++; ?></td>
-                                <td><?php echo $data['categories']; ?></td>
+                                <td><?php echo $data['category']; ?></td>
                                 <td>
-                                    <a href="?page=categories_ubah&&id=<?php echo $data['category']; ?>" class="btn btn-outline-info">Ubah</a>
-                                    <a onclick="return confirm('Apakah anda yakin menhapus data ini?');" href="?page=categories_hapus&&id=<?php echo $data['category']; ?>" class="btn btn-outline-danger"><i class="fa fa-trash" aria-hidden="true"></i>Hapus</a>
+                                    <a href="?page=categories_ubah&&id=<?php echo $data['id']; ?>" class="btn btn-outline-info">Ubah</a>
+                                    <a onclick="return confirm('Apakah anda yakin menhapus data ini?');" href="?page=categories_hapus&&id=<?php echo $data['id']; ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i>  Hapus</a>
                                 </td>
                             </tr>
                             <?php

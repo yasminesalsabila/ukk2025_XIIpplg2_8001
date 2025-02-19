@@ -1,3 +1,13 @@
+<?php
+include "koneksi.php"; 
+
+
+if (!isset($_SESSION['users'])) {
+    header('location:login.php');    
+ exit();
+}
+?>
+
 <h1 class="mt-4">Kategori Tugas</h1>
 <div class="card">
     <div class="card-body">
@@ -5,23 +15,28 @@
             <div class="col-md-12">
                 <form method="post">
                     <?php
-                        if(isset($_POST['submit'])) {
-                            $categories = $_POST['categories'];
-                            $query = mysqli_query($koneksi, "INSERT INTO categories(task) VALUES ('$categories')");
+                    if (isset($_POST['submit'])) {
+                        $category = mysqli_real_escape_string($koneksi, $_POST['category']);
+                        $user_id = $_SESSION['users']['id']; 
 
-                            if($query) {
-                                echo '<script>alert("Tambah data berhasil.");</script>';
-                                echo '<script>window.location.href = "?page=categories&task=' . $task . '";</script>';
-                            }else{
-                                echo '<script>alert("Tambah data gagal.");</script>';
-                            }
+                        
+                        $query = mysqli_query($koneksi, "INSERT INTO categories (category, user_id) VALUES ('$category', '$user_id')");
+
+                        if ($query) {
+                            echo '<script>alert("Tambah data berhasil.");</script>';
+                            echo '<script>window.location.href = "?page=categories";</script>';
+                        } else {
+                            echo '<script>alert("Tambah data gagal: ' . mysqli_error($koneksi) . '");</script>';
                         }
+                    }
                     ?>  
                     <div class="row mb-3">
                         <div class="col-md-2">Nama Kategori</div>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" name="categories"></div>
+                            <input type="text" class="form-control" name="category" required>
+                        </div>
                     </div>
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['users']['id']; ?>">
                     <div class="row mb-3">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">

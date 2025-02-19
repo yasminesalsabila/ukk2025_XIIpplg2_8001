@@ -41,17 +41,13 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Tugas
                             </a>
-                            <a class="nav-link" href="?page=laporan" style="color: black;">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                                    Laporan Tugas
-                                </a>
                             <a class="nav-link" href="logout.php" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
                                 Logout
                             </a>
                         </div>
                     </div>
-                    <div class="sb-sidenav-footer">
+                    <div class="sb-sidenav-footer" style="background-color: #FFB6C1">
                         <div class="small">Logged in as:</div>
                         <?php echo $_SESSION['users']['nama']; ?>
                     </div>

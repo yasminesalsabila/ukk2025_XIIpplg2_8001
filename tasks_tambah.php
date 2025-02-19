@@ -5,54 +5,61 @@
             <div class="col-md-12">
                 <form method="post">
                     <?php
-                    if (isset($_POST['submit'])) {
-                        $id_buku = $_POST['id_buku'];
-                        $id_user = $_SESSION['user']['id_user'];
-                        $tanggal_peminjaman = $_POST['tanggal_peminjaman'];
-                        $tanggal_pengembalian = $_POST['tanggal_pengembalian'];
-                        $status_peminjaman = $_POST['status_peminjaman'];
-                        $query = mysqli_query($koneksi, "INSERT INTO peminjaman(id_buku, id_user, tanggal_peminjaman, tanggal_pengembalian, status_peminjaman) VALUES ('$id_buku','$id_user','$tanggal_peminjaman','$tanggal_pengembalian','$status_peminjaman')");
+                        if(isset($_POST['submit'])) {
+                            $category_id = $_POST['category'];
+                            $task = $_POST['task'];
+                            $query = mysqli_query($koneksi, "INSERT INTO tasks(category, task) VALUES ('$category', '$task')");
 
-                        if ($query) {
-                            echo '<script>alert("Tambah data berhasil.");</script>';
-                            echo '<script>window.location.href = "?page=peminjaman&id_buku=' . $id_buku . '";</script>';
-                        } else {
-                            echo '<script>alert("Tambah data gagal.");</script>';
+                            if($query) {
+                                echo '<script>alert("Tambah data berhasil.");</script>';
+                                echo '<script>window.location.href = "?page=tasks";</script>';
+                            }else{
+                                echo '<script>alert("Tambah data gagal.");</script>';
+                            }
                         }
-                    }
                     ?>  
+
                     <div class="row mb-3">
-                        <div class="col-md-2">Buku</div>
+                        <div class="col-md-2">Kategori</div>
                         <div class="col-md-8 mb-3">
-                            <select name="id_buku" class="form-control">
+                            <select name="category_id" class="form-control">
                                 <?php
-                                $buk = mysqli_query($koneksi, "SELECT * FROM buku");
-                                while ($buku = mysqli_fetch_array($buk)) {
+                                $cat = mysqli_query($koneksi, "SELECT * FROM categories");
+                                while ($categories = mysqli_fetch_array($cat)) {
                                     ?>
-                                    <option value="<?php echo $buku['id_buku']; ?>"><?php echo $buku['judul']; ?></option>
+                                    <option value="<?php echo $categories['category']; ?>"><?php echo $categories['categories']; ?></option>
                                     <?php
                                 }
                                 ?>
+                        </select>
+                    </div>
+                </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2">Tugas</div>
+                        <div class="col-md-8"><input type="text" class="form-control" name="task"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-2">Prioritas</div>
+                        <div class="col-md-8 mb-3">
+                            <select name="priority" class="form-control">
+                                <option value="tinggi">Tinggi</option>
+                                <option value="sedang">Sedang</option>
+                                <option value="rendah">Rendah</option>
                             </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                        <div class="col-md-2">Tanggal Riwayat</div>
+                        <div class="col-md-8">
+                            <input type="date" class="form-control" name="due_date">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-2">Tanggal Peminjaman</div>
+                        <div class="col-md-2">Status</div>
                         <div class="col-md-8">
-                            <input type="date" class="form-control" name="tanggal_peminjaman">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-2">Tanggal Pengembalian</div>
-                        <div class="col-md-8">
-                            <input type="date" class="form-control" name="tanggal_pengembalian">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-2">Status Peminjaman</div>
-                        <div class="col-md-8">
-                            <select name="status_peminjaman" class="form-control">
-                                <option value="dipinjam">Dipinjam</option>
+                            <select name="status" class="form-control">
+                                <option value="complete">Complete</option>
+                                <option value="not complete">Not Complete</option>
                             </select>
                         </div>
                     </div>
@@ -61,7 +68,7 @@
                         <div class="col-md-8">
                             <button type="submit" class="btn btn-outline-primary" name="submit" value="submit">Simpan</button>
                             <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                            <a href="?page=peminjaman" class="btn btn-outline-danger">Kembali</a>
+                            <a href="?page=tasks" class="btn btn-outline-danger">Kembali</a>
                         </div>
                     </div>
                 </form>
