@@ -21,14 +21,14 @@
                     ?>
                         <tr>
                             <td><?php echo $i++; ?></td>
-                            <td><?php echo $data['category']; ?></td>
-                            <td><?php echo $data['task']; ?></td>
+                            <td><?php echo $data['categories']; ?></td>
+                            <td><?php echo $data['tasks']; ?></td>
                             <td><?php echo $data['priority']; ?></td>
-                            <td><?php echo $data['due_date']; ?></td>
+                            <td><?php echo $data['date']; ?></td>
                             <td><?php echo $data['status']; ?></td>
                             <td>
-                                <a href="?page=tasks_ubah&&id=<?php echo $data['task_id']; ?>" class="btn btn-outline-info">Ubah</a>
-                                <a onclick="return confirm('Apakah anda yakin menghapus data ini?');" href="?page=tasks_hapus&&id=<?php echo $data['task_id']; ?>" class="btn btn-outline-danger">Hapus</a>
+                                <a href="?page=tasks_ubah&&id=<?php echo $data['id']; ?>" class="btn btn-outline-info">Ubah</a>
+                                <a onclick="return confirm('Apakah anda yakin menghapus data ini?');" href="?page=tasks_hapus&&id=<?php echo $data['id']; ?>" class="btn btn-outline-danger">Hapus</a>
                             </td>
                         </tr>
                     <?php

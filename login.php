@@ -32,7 +32,7 @@
                                                 $cek = mysqli_num_rows($data);
                                                 if($cek > 0 ){
                                                     $_SESSION['users'] = mysqli_fetch_array($data);
-                                                    echo '<script>alert("Selamat Datang, Login Berhasil"); location.href="index.php";</script>';
+                                                    echo '<script>alert("Welcome My To Do List !!"); location.href="index.php";</script>';
                                                 }else{
                                                     echo "Error: " . mysqli_error($koneksi);
                                                 }
@@ -52,11 +52,6 @@
                                                 <a class="btn btn-outline-danger" href="register.php">Register</a>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small">
-                                            &copy; 2025 My To Do List.
-                                        </div>
                                     </div>
                                 </div>
                             </div>

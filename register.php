@@ -44,7 +44,7 @@
                                                 $insert = mysqli_query($koneksi, "INSERT INTO users(username,password,email,nama) VALUES('$username','$password','$email','$nama')");
 
                                                 if($insert){
-                                                    echo '<script>alert("Selamat, register berhasil. Silahkan Login"); location.href="login.php"</script>';
+                                                    echo '<script>alert("Register anda berhasil. Silahkan Login !"); location.href="login.php"</script>';
                                                  }else{
                                                     echo "Error: " . mysqli_error($koneksi);
                                                 }
@@ -72,11 +72,6 @@
                                                 <a class="btn btn-outline-danger" href="login.php">Login</a>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <div class="small">
-                                            &copy; 2025 My To Do List.
-                                        </div>
                                     </div>
                                 </div>
                             </div>

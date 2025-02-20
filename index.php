@@ -18,12 +18,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #FFB6C1;">
-        <a class="navbar-brand" href="index.html" style="padding-left: 20px; color: black; font-weight: bold;">My To Do List</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #FFB6C1;">
+            <a class="navbar-brand" style="padding-left: 20px; color: black; font-weight: bold;">My To Do List</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <div class="ms-auto me-4 d-flex align-items-center">
+                <form class="d-flex me-3" role="search">
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-info btn-sm" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <a href="profile.php"><i class="fa fa-user-circle fa-2x"></i>
+                </a>
+            </div>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+                <div id="layoutSidenav">
+                    <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion" id="sidenavAccordion" style="background-color: #FFE4E1">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -66,13 +79,6 @@
                         ?>
                     </div>
                 </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted"> &copy; My To Do List 2025</div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
