@@ -23,6 +23,7 @@ $user = $_SESSION['users'];
 <body>
     <div class="profile-container" style="background-color:rgb(241, 168, 191);">
         <h2>Profil Pengguna</h2>
+        <img src="cewek.jpg" alt="Foto Profil" class="rounded-circle mb-3" width="200">
         <p><strong>Username:</strong> <?php echo $user['username']; ?></p>
         <p><strong>Nama:</strong> <?php echo $user['nama']; ?></p>
         <p><strong>Password:</strong> <?php echo $user['password']; ?></p>

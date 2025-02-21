@@ -54,6 +54,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Tugas
                             </a>
+                            <a class="nav-link" href="?page=laporan" style="color: black;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Laporan
+                            </a>
                             <a class="nav-link" href="logout.php" style="color: black;">
                                 <div class="sb-nav-link-icon"><i class="fa fa-power-off"></i></div>
                                 Logout

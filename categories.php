@@ -22,7 +22,8 @@
                                 <td><?php echo $i++; ?></td>
                                 <td><?php echo $data['categories']; ?></td>
                                 <td>
-                                    <a onclick="return confirm('Apakah anda yakin menhapus data ini?');" href="?page=categories_hapus&&id=<?php echo $data['id']; ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i>  Hapus</a>
+                                    <a onclick="return confirm('Apakah anda yakin menhapus data ini?');" href="?page=categories_hapus&&id=<?php echo $data['id']; ?>" class="btn btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="?page=Categories_ubah&id=<?php echo $data['id']; ?>" class="btn btn-outline-secondary">Ubah</a>
                                 </td>
                             </tr>
                             <?php

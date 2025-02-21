@@ -1,34 +1,26 @@
-<?php
-include "koneksi.php"; 
-
-
-if (!isset($_SESSION['users'])) {
-    header('location:login.php');    
- exit();
-}
-?>
-
 <h1 class="mt-4">Kategori Tugas</h1>
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <form method="post">
-                    <?php
-                    if (isset($_POST['submit'])) {
-                        $categories = mysqli_real_escape_string($koneksi, $_POST['categories']);
-                        $user_id = $_SESSION['users']['id']; 
+                <?php
+                        $id = $_GET['id'];
+                        if (isset($_POST['submit'])) {
+                            $categories = mysqli_real_escape_string($koneksi, $_POST['categories']);
+                            $user_id = $_SESSION['users']['id']; 
 
-                        
-                        $query = mysqli_query($koneksi, "INSERT INTO categories (categories, user_id) VALUES ('$categories', '$user_id')");
+                            $query = mysqli_query($koneksi, "UPDATE categories set categories='$categories' WHERE id=$id");
 
-                        if ($query) {
-                            echo '<script>alert("Tambah data berhasil.");</script>';
-                            echo '<script>window.location.href = "?page=categories";</script>';
-                        } else {
-                            echo '<script>alert("Tambah data gagal: ' . mysqli_error($koneksi) . '");</script>';
+                            if($query) {
+                                echo '<script>alert("Ubah data berhasil.");</script>';
+                                echo '<script>window.location.href = "?page=categories";</script>';
+                            } else {
+                                echo '<script>alert("Ubah data gagal: ' . mysqli_error($koneksi) . '");</script>';
+                            }
                         }
-                    }
+                        $query = mysqli_query($koneksi, "SELECT*FROM categories WHERE id=$id");
+                        $data = mysqli_fetch_array($query);
                     ?>  
                     <div class="row mb-3">
                         <div class="col-md-2">Nama Kategori</div>
@@ -36,7 +28,6 @@ if (!isset($_SESSION['users'])) {
                             <input type="text" class="form-control" name="categories" required>
                         </div>
                     </div>
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['users']['id']; ?>">
                     <div class="row mb-3">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
